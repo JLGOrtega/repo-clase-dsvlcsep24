@@ -109,8 +109,8 @@ Vamos a probar algunas operaciones sobre una BBDD de prueba con MongoDB para fam
 13. Crea un par de restaurantes que te gusten. Tendrás que buscar en Google Maps los datos de las coordenadas
 14. Actualiza los restaurantes. Cambia el tipo de cocina 'Ice Cream, Gelato, Yogurt, Ices' por 'sweets'
 15. Actualiza nombre del restaurante 'Wild Asia' por 'Wild Wild West'
-16. Borra los restaurantes con latitud menor que -95.754168
-17. Borra los restaurantes cuyo nombre empiece por 'C'
+16. Busca los restaurantes con latitud menor que -95.754168
+17. Busca los restaurantes cuyo nombre empiece por 'C'
 
 
 **Importación de datos en MongoDB**
