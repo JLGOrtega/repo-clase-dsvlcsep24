@@ -16,7 +16,7 @@ def saludo():
 @app.route("/api/mongo", methods=["GET"])
 def mongo():
     filtro = request.args["col1"]
-    churro = "mongodb+srv://admin:admin@cluster0.153jo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    churro = ""
     # Simple default connection
     client = MongoClient(churro)  # Connects to localhost:27017
     mydb = client["mydb"]
