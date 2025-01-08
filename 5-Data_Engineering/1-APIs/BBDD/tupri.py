@@ -1,0 +1,1 @@
+tupri_var = 10
