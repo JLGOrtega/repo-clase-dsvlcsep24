@@ -32,26 +32,78 @@ def book_id():
 
 
 # 3.Ruta para obtener un libro concreto mediante su título como parámetro en la llamada de otra forma
-# @app.route('/api/v0/resources/book/<string:title>', methods=['GET'])
+@app.route('/api/v0/resources/book/<string:title>', methods=['GET'])
+def book_title(title):
+    results = []
+
+    for book in books:
+        if book['title']==title:
+            results.append(book)
+    if results == []:
+        return "Book not found with the title requested"    
+    else:
+        return jsonify(results)
 
 
 
 # 4.Ruta para obtener un libro concreto mediante su título dentro del cuerpo de la llamada
-# @app.route('/api/v1/resources/book', methods=['GET'])
+@app.route('/api/v1/resources/book', methods=['GET'])
+def book_test():
+    title = request.get_json().get("title")
+    results = []
 
+    for book in books:
+        if book['title']==title:
+            results.append(book)
+    if results == []:
+        return "Book not found with the title requested"    
+    else:
+        return jsonify(results)
+    
+
+    
 
 
 # 5.Ruta para añadir un libro mediante parámetros en la llamada
-# @app.route('/api/v1/resources/book/add', methods=['POST'])
+@app.route('/api/v1/resources/book/add', methods=['POST'])
+def add_book_args():
+    book = request.args
+
+    books.append(book)
+
+    return books
+
 
 
 # 6.Ruta para añadir un libro de otra forma 1
-# @app.route('/api/v1/resources/book/add_parameters', methods=['POST'])
+@app.route('/api/v1/resources/book/add_parameters', methods=['POST'])
+def add_book_body():
+    book = request.get_json()
+
+    books.append(book)
+
+    return books
 
 
 # 7.Ruta para modificar un libro
-# @app.route('/api/v1/resources/book/update', methods=['PUT'])
-
+@app.route('/api/v1/resources/book/update', methods=['PUT'])
+def modify():
+    old_title = request.args.get("title")
+    new_book = request.get_json()
+    print("old_title: ", old_title)
+    for book in books:
+        print("book_title", book["title"])
+        print("----------")
+        if book["title"] == old_title:
+            old_id  = book["id"]
+            new_book["id"] = old_id
+            indice = books.index(book)
+            books.pop(indice)
+            books.insert(indice, new_book)
+            return books
+        
+    return "book not found"
+    
 
 # 8.Ruta para eliminar un libro
 # @app.route('/api/v1/resources/book/delete', methods=['DELETE'])
